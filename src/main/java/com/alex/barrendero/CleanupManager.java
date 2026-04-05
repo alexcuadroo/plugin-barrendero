@@ -1,5 +1,7 @@
 package com.alex.barrendero;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -13,6 +15,7 @@ public class CleanupManager {
     private final LoggerHelper logger;
     private Config config;
     private BukkitTask task;
+    private BukkitTask warningTask;
 
     public CleanupManager(JavaPlugin plugin, Config config, LoggerHelper logger) {
         this.plugin = plugin;
@@ -24,6 +27,13 @@ public class CleanupManager {
         stop();
         long intervalTicks = Math.max(1, config.getIntervalSeconds()) * 20L;
         task = plugin.getServer().getScheduler().runTaskTimer(plugin, this::runCleanup, intervalTicks, intervalTicks);
+
+        if (config.isMessagesEnabled() && config.getWarnBeforeSeconds() > 0
+                && config.getWarnBeforeSeconds() < config.getIntervalSeconds()) {
+            long warnDelayTicks = intervalTicks - (config.getWarnBeforeSeconds() * 20L);
+            warningTask = plugin.getServer().getScheduler().runTaskTimer(plugin, this::sendWarning, warnDelayTicks, intervalTicks);
+        }
+
         logger.info("Tarea de limpieza programada cada " + config.getIntervalSeconds() + "s.");
     }
 
@@ -32,11 +42,23 @@ public class CleanupManager {
             task.cancel();
             task = null;
         }
+        if (warningTask != null) {
+            warningTask.cancel();
+            warningTask = null;
+        }
     }
 
     public void reloadConfig(Config config) {
         this.config = config;
         start();
+    }
+
+    private void sendWarning() {
+        if (!config.isMessagesEnabled()) return;
+        String msg = config.getWarningMessage()
+                .replace("{prefix}", config.getPrefix())
+                .replace("{seconds}", String.valueOf(config.getWarnBeforeSeconds()));
+        Bukkit.broadcastMessage(colorize(msg));
     }
 
     private void runCleanup() {
@@ -54,6 +76,18 @@ public class CleanupManager {
                 }
             }
         }
-        if (removed > 0) logger.info("Eliminados " + removed + " items del suelo.");
+        if (removed > 0) {
+            logger.info("Eliminados " + removed + " items del suelo.");
+            if (config.isMessagesEnabled()) {
+                String msg = config.getCleanupMessage()
+                        .replace("{prefix}", config.getPrefix())
+                        .replace("{removed}", String.valueOf(removed));
+                Bukkit.broadcastMessage(colorize(msg));
+            }
+        }
+    }
+
+    private String colorize(String text) {
+        return ChatColor.translateAlternateColorCodes('&', text);
     }
 }

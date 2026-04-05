@@ -1,6 +1,6 @@
 name: Barrendero
 main: com.alex.barrendero.BarrenderoPlugin
-version: 1.2.3
+version: 1.2.4
 api-version: "${paper.plugin.api-version}"
 commands:
   barrendero:

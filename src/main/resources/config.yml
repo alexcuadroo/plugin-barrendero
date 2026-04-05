@@ -2,8 +2,20 @@
 # Intervalo en segundos para ejecutar la limpieza
 interval-seconds: 60
 # Eliminar items con esta edad (en segundos)
-age-seconds: 30
+age-seconds: 15
 # Radio (no usado por defecto) — reservado para futuras mejoras
 radius: 0.0
 # Lista de mundos a procesar. Vacío = todos los mundos
 worlds: []
+# Configuración de mensajes en el chat
+messages:
+  # Activar/desactivar avisos y mensajes finales
+  enabled: true
+  # Segundos antes de la limpieza para avisar
+  warn-before-seconds: 30
+  # Prefijo de los mensajes (puede incluir códigos de color de Minecraft, por ejemplo: '&a[Barrendero]')
+  prefix: '[SERVER]'
+  # Mensaje de limpieza (usa {removed} para el número de items)
+  cleanup-message: '&a{prefix} &fEliminados &e{removed} &fitems del suelo.'
+  # Mensaje de aviso previo (usa {seconds} para el tiempo)
+  warning-message: '&6{prefix} &eEn &c{seconds} &esegundos se realizará una limpieza del suelo.'
