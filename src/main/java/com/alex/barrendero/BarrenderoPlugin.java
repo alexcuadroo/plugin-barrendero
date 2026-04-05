@@ -17,6 +17,7 @@ public class BarrenderoPlugin extends JavaPlugin {
         this.cleanupManager = new CleanupManager(this, config, logger);
         this.cleanupManager.start();
         logger.info("Barrendero habilitado.");
+        new UpdateChecker(this, logger).checkForUpdates();
     }
 
     @Override
