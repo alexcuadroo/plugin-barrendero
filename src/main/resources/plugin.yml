@@ -1,0 +1,13 @@
+name: Barrendero
+main: com.alex.barrendero.BarrenderoPlugin
+version: 1.0.0
+api-version: "1.21"
+commands:
+  barrendero:
+    description: Barrendero commands
+    usage: /<command> reload
+    permission: barrendero.reload
+permissions:
+  barrendero.reload:
+    description: Reload the Barrendero config
+    default: op

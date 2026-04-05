@@ -1,0 +1,9 @@
+# Barrendero - configuración
+# Intervalo en segundos para ejecutar la limpieza
+interval-seconds: 60
+# Eliminar items con esta edad (en segundos)
+age-seconds: 30
+# Radio (no usado por defecto) — reservado para futuras mejoras
+radius: 0.0
+# Lista de mundos a procesar. Vacío = todos los mundos
+worlds: []
