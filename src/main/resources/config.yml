@@ -15,7 +15,7 @@ messages:
   warn-before-seconds: 30
   # Prefijo de los mensajes (puede incluir códigos de color de Minecraft, por ejemplo: '&a[Barrendero]')
   prefix: '[SERVER]'
-  # Mensaje de limpieza (usa {removed} para el número de items)
-  cleanup-message: '&a{prefix} &fEliminados &e{removed} &fitems del suelo.'
-  # Mensaje de aviso previo (usa {seconds} para el tiempo)
-  warning-message: '&6{prefix} &eEn &c{seconds} &esegundos se realizará una limpieza del suelo.'
+  # Mensaje de limpieza (usa {removed} para el número de items) — formato MiniMessage
+  cleanup-message: '<green>{prefix} <white>Eliminados <yellow>{removed} <white>items del suelo.'
+  # Mensaje de aviso previo (usa {seconds} para el tiempo) — formato MiniMessage
+  warning-message: '<gold>{prefix} <yellow>En <red>{seconds} <yellow>segundos se realizará una limpieza del suelo.'

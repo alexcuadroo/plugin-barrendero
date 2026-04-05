@@ -1,7 +1,7 @@
 package com.alex.barrendero;
 
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Item;
@@ -11,6 +11,8 @@ import org.bukkit.scheduler.BukkitTask;
 import java.util.List;
 
 public class CleanupManager {
+    private static final MiniMessage MINI = MiniMessage.miniMessage();
+
     private final JavaPlugin plugin;
     private final LoggerHelper logger;
     private Config config;
@@ -55,10 +57,10 @@ public class CleanupManager {
 
     private void sendWarning() {
         if (!config.isMessagesEnabled()) return;
-        String msg = config.getWarningMessage()
+        String raw = config.getWarningMessage()
                 .replace("{prefix}", config.getPrefix())
                 .replace("{seconds}", String.valueOf(config.getWarnBeforeSeconds()));
-        Bukkit.broadcastMessage(colorize(msg));
+        Bukkit.broadcast(MINI.deserialize(raw));
     }
 
     private void runCleanup() {
@@ -79,15 +81,11 @@ public class CleanupManager {
         if (removed > 0) {
             logger.info("Eliminados " + removed + " items del suelo.");
             if (config.isMessagesEnabled()) {
-                String msg = config.getCleanupMessage()
+                String raw = config.getCleanupMessage()
                         .replace("{prefix}", config.getPrefix())
                         .replace("{removed}", String.valueOf(removed));
-                Bukkit.broadcastMessage(colorize(msg));
+                Bukkit.broadcast(MINI.deserialize(raw));
             }
         }
-    }
-
-    private String colorize(String text) {
-        return ChatColor.translateAlternateColorCodes('&', text);
     }
 }

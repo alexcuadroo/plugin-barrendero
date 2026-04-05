@@ -26,9 +26,9 @@ public class Config {
         this.warnBeforeSeconds = cfg.getInt("messages.warn-before-seconds", 30);
         this.prefix = cfg.getString("messages.prefix", "[PYTHECUS]");
         this.cleanupMessage = cfg.getString("messages.cleanup-message",
-                "&a{prefix} &fEliminados &e{removed} &fitems del suelo.");
+                "<green>{prefix} <white>Eliminados <yellow>{removed} <white>items del suelo.");
         this.warningMessage = cfg.getString("messages.warning-message",
-                "&6{prefix} &eEn &c{seconds} &esegundos se realizará una limpieza del suelo.");
+                "<gold>{prefix} <yellow>En <red>{seconds} <yellow>segundos se realizará una limpieza del suelo.");
     }
 
     public int getIntervalSeconds() { return intervalSeconds; }
