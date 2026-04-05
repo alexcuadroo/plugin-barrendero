@@ -25,9 +25,10 @@ public class UpdateChecker {
 
     public void checkForUpdates() {
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
+            HttpURLConnection conn = null;
             try {
                 URL url = URI.create(GITHUB_API_URL).toURL();
-                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
                 conn.setRequestProperty("Accept", "application/vnd.github+json");
                 conn.setConnectTimeout(5000);
@@ -39,14 +40,13 @@ public class UpdateChecker {
                     return;
                 }
 
-                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 StringBuilder response = new StringBuilder();
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    response.append(line);
+                try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        response.append(line);
+                    }
                 }
-                reader.close();
-                conn.disconnect();
 
                 String latestTag = parseTagName(response.toString());
                 if (latestTag == null) {
@@ -66,6 +66,10 @@ public class UpdateChecker {
 
             } catch (Exception e) {
                 logger.warn("Error al verificar actualizaciones: " + e.getMessage());
+            } finally {
+                if (conn != null) {
+                    conn.disconnect();
+                }
             }
         });
     }

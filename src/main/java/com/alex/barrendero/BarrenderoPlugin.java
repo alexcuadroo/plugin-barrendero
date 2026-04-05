@@ -23,7 +23,7 @@ public class BarrenderoPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         if (cleanupManager != null) cleanupManager.stop();
-        logger.info("Barrendero deshabilitado.");
+        if (logger != null) logger.info("Barrendero deshabilitado.");
     }
 
     @Override

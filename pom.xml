@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.alex</groupId>
     <artifactId>barrendero-paper</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <name>Barrendero (Paper plugin)</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

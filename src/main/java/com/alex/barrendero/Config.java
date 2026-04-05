@@ -21,6 +21,6 @@ public class Config {
     public int getAgeSeconds() { return ageSeconds; }
     public double getRadius() { return radius; }
     public boolean isWorldAllowed(String name) {
-        return worlds == null || worlds.isEmpty() || worlds.contains(name);
+        return worlds.isEmpty() || worlds.contains(name);
     }
 }

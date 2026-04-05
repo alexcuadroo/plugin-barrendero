@@ -47,7 +47,7 @@ public class CleanupManager {
             for (Entity e : entities) {
                 if (e instanceof Item item) {
                     int ticksLived = item.getTicksLived();
-                    if (ticksLived >= config.getAgeSeconds() * 20) {
+                    if (ticksLived >= config.getAgeSeconds() * 20L) {
                         item.remove();
                         removed++;
                     }
