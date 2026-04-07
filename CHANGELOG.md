@@ -1,5 +1,5 @@
 # Changelog
-## v1.2.6
+## v2.0.0
 
 ### Cambios
 - **Compatibilidad con Java 25**: Actualizado el plugin para compilar y ejecutarse con Java 25, eliminando perfiles Maven y fijando la versión de compilación.
