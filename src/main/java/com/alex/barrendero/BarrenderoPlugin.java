@@ -1,6 +1,5 @@
 package com.alex.barrendero;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -45,10 +44,10 @@ public class BarrenderoPlugin extends JavaPlugin {
                 reloadConfig();
                 this.config = new Config(getConfig());
                 this.cleanupManager.reloadConfig(this.config);
-                sender.sendMessage(Component.text("[Barrendero] Configuración recargada."));
+                sender.sendMessage("[Barrendero] Configuración recargada.");
                 return true;
             }
-            sender.sendMessage(Component.text("Uso: /barrendero reload"));
+            sender.sendMessage("Uso: /barrendero reload");
             return true;
         }
         return false;

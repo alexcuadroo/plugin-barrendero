@@ -55,7 +55,7 @@ public class UpdateChecker {
                 }
 
                 String latestVersion = latestTag.startsWith("v.") ? latestTag.substring(2) : latestTag;
-                String currentVersion = plugin.getPluginMeta().getVersion();
+                String currentVersion = plugin.getDescription().getVersion();
 
                 if (!currentVersion.equals(latestVersion)) {
                     logger.info("========================================");

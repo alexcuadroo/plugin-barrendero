@@ -17,13 +17,13 @@ public class Config {
     private final String warningMessage;
 
     public Config(FileConfiguration cfg) {
-        this.intervalSeconds = cfg.getInt("interval-seconds", 60);
-        this.ageSeconds = cfg.getInt("age-seconds", 30);
-        this.radius = cfg.getDouble("radius", 0.0);
+        this.intervalSeconds = Math.max(1, cfg.getInt("interval-seconds", 60));
+        this.ageSeconds = Math.max(0, cfg.getInt("age-seconds", 30));
+        this.radius = Math.max(0.0, cfg.getDouble("radius", 0.0));
         this.worlds = cfg.getStringList("worlds");
 
         this.messagesEnabled = cfg.getBoolean("messages.enabled", true);
-        this.warnBeforeSeconds = cfg.getInt("messages.warn-before-seconds", 30);
+        this.warnBeforeSeconds = Math.max(0, cfg.getInt("messages.warn-before-seconds", 30));
         this.prefix = cfg.getString("messages.prefix", "[PYTHECUS]");
         this.cleanupMessage = cfg.getString("messages.cleanup-message",
                 "<green>{prefix} <white>Eliminados <yellow>{removed} <white>items del suelo.");
