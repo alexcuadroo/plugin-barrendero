@@ -13,7 +13,7 @@ messages:
   enabled: true
   # Segundos antes de la limpieza para avisar
   warn-before-seconds: 30
-  # Prefijo de los mensajes (puede incluir códigos de color de Minecraft, por ejemplo: '&a[Barrendero]')
+  # Prefijo de los mensajes (formato MiniMessage, por ejemplo: '<green>[Barrendero]')
   prefix: '[SERVER]'
   # Mensaje de limpieza (usa {removed} para el número de items) — formato MiniMessage
   cleanup-message: '<green>{prefix} <white>Eliminados <yellow>{removed} <white>items del suelo.'

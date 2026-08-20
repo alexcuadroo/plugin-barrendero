@@ -1,28 +1,23 @@
 # Barrendero — Plugin Paper para limpiar items en el suelo
 
+## Compatibilidad
+
+El plugin compila contra la **API de Paper 26.1.2** (la más antigua soportada) y declara
+`api-version: "26.1"`, por lo que **un mismo JAR funciona en Paper 26.1.2 y 26.2** (ambas
+usan Java 25). La API de Paper es retrocompatible hacia atrás: todo lo que existe en 26.1.2
+sigue existiendo en 26.2.
+
 ## Compilación
 
-El proyecto usa **perfiles Maven** para generar un JAR compatible con cada versión de Minecraft.
-
-### Minecraft 1.21 — requiere JDK 21
+Requiere **JDK 25**.
 
 ```powershell
-mvn clean package -Pmc-1_21
+mvn clean package
 ```
 
-Genera: `target/barrendero-paper-1.2.2-mc1.21.jar`
+Genera: `target/barrendero-paper-2.0.1.jar`
 
-### Minecraft 26.1 — requiere JDK 25
-
-Si tu `JAVA_HOME` apunta a JDK 21, setealo temporalmente antes de compilar:
-
-```powershell
-$env:JAVA_HOME = "C:\Users\alexc\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.2.10-hotspot"; mvn clean package -Pmc-26_1
-```
-
-Genera: `target/barrendero-paper-1.2.2-mc26.1.jar`
-
-Copia el JAR correspondiente al directorio `plugins/` de tu servidor Paper. 
+Copia el JAR al directorio `plugins/` de tu servidor Paper (26.1.2 o 26.2).
 
 Comandos:
 - `/barrendero reload` — recarga `config.yml`.

@@ -1,6 +1,7 @@
 package com.alex.barrendero;
 
 import net.kyori.adventure.text.minimessage.MiniMessage;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.bukkit.entity.Entity;
@@ -12,6 +13,7 @@ import java.util.List;
 
 public class CleanupManager {
     private static final MiniMessage MINI = MiniMessage.miniMessage();
+    private static final LegacyComponentSerializer LEGACY = LegacyComponentSerializer.legacySection();
 
     private final JavaPlugin plugin;
     private final LoggerHelper logger;
@@ -60,7 +62,7 @@ public class CleanupManager {
         String raw = config.getWarningMessage()
                 .replace("{prefix}", config.getPrefix())
                 .replace("{seconds}", String.valueOf(config.getWarnBeforeSeconds()));
-        Bukkit.broadcast(MINI.deserialize(raw));
+        Bukkit.broadcastMessage(LEGACY.serialize(MINI.deserialize(raw)));
     }
 
     private void runCleanup() {
@@ -84,7 +86,7 @@ public class CleanupManager {
                 String raw = config.getCleanupMessage()
                         .replace("{prefix}", config.getPrefix())
                         .replace("{removed}", String.valueOf(removed));
-                Bukkit.broadcast(MINI.deserialize(raw));
+                Bukkit.broadcastMessage(LEGACY.serialize(MINI.deserialize(raw)));
             }
         }
     }
