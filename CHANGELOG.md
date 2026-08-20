@@ -1,4 +1,10 @@
 # Changelog
+## v2.0.1
+
+### Cambios
+- **Compatibilidad multi-versión**: El plugin ahora funciona en Paper **26.1.2** y **26.2** con un único JAR. Se compila contra la API de Paper 26.1.2 (la más antigua soportada) y se baja `api-version` a `"26.1"`, de modo que los servidores 26.1.2 ya no rechazan cargar el plugin (antes declaraba `api-version: "26.2"`).
+- **Fix de arranque (NoSuchMethodError)**: Se fija **todas** las librerías Adventure a la versión **5.2.0** (mediante `adventure-bom` e `adventure-api` explícita). Antes, `paper-api` forzaba `adventure-api` 4.26.1 y se shadeaba una mezcla incompatible con MiniMessage 5.2.0 (`Services.service(ServiceLoader, Class)` no existía), lo que hacía fallar el `onEnable` con `NoSuchMethodError`.
+
 ## v2.0.0
 
 ### Cambios
